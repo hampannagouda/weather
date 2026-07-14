@@ -1,4 +1,4 @@
-# Create a new directory for our project
+# Create a new directory for project
 uv init visual
 cd visual
 
