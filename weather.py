@@ -1,14 +1,12 @@
-#https://github.com/modelcontextprotocol/quickstart-resources/blob/main/weather-server-python/weather.py
-
-from typing import Any
-
-import httpx
-
+from datetime import datetime
 from mcp.server.fastmcp import FastMCP
 
-mcp = FastMCP("weather")
+mcp = FastMCP("time-server")
 
-NWS_API_BASE = "https://api.weather.gov"
-USER_AGENT = "weather-app/1.0"
+@mcp.tool()
+async def get_current_time() -> str:
+    """Get the current local time from the PC running the MCP server."""
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-async def make_nws_request(url: str) -> dict[str, Any]:
+if __name__ == "__main__":
+    mcp.run()
